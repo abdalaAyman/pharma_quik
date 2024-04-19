@@ -1,13 +1,57 @@
 import 'package:flutter/material.dart';
-import 'package:pharmaquik/features/Splash/presentation/views/widgets/splash_view_body.dart';
+import 'package:flutter/services.dart';
+import 'package:pharmaquik/core/utils/assets_data.dart';
+import 'package:pharmaquik/features/Splash/presentation/views/on_boarding_view.dart';
 
-class SplashView extends StatelessWidget {
+class SplashView extends StatefulWidget {
   const SplashView({super.key});
 
   @override
+  State<SplashView> createState() => _SplashViewState();
+}
+
+class _SplashViewState extends State<SplashView>
+    with SingleTickerProviderStateMixin {
+  @override
+  void initState() {
+    super.initState();
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
+
+    Future.delayed(const Duration(seconds: 2), () {
+      Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (_) => const OnBoardingView()));
+    });
+  }
+
+  @override
+  void dispose() {
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
+        overlays: SystemUiOverlay.values);
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: SplashViewBody(),
+    return Container(
+      height: double.infinity,
+      width: double.infinity,
+      decoration: const BoxDecoration(
+        gradient: LinearGradient(colors: [
+          Color.fromARGB(255, 104, 187, 255),
+          Color.fromARGB(255, 255, 112, 160)
+        ], begin: Alignment.topRight, end: Alignment.bottomLeft),
+      ),
+      child: Stack(
+        alignment: Alignment.center,
+        children: [
+          Image.asset(AssetsData.fullLogo),
+          Positioned(top: 0, right: 0, child: Image.asset(AssetsData.splash1)),
+          Positioned(
+              top: 600, right: 0, child: Image.asset(AssetsData.splash2)),
+          Positioned(
+              bottom: 0, left: 0, child: Image.asset(AssetsData.splash3)),
+        ],
+      ),
     );
   }
 }

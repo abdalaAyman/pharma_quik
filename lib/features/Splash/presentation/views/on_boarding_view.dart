@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:pharmaquik/features/Splash/presentation/views/widgets/on_boarding_view_body.dart';
 
@@ -6,11 +8,11 @@ class OnBoardingView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: SafeArea(
+    return Scaffold(
+      body: const SafeArea(
         child: Padding(
-          padding: EdgeInsets.only(top: 64, left: 10, right: 10),
-          child: OnBoardingViewBody(),
+          padding: EdgeInsets.only(top: 0, left: 25, right: 25),
+          child: OnBordingView(),
         ),
       ),
     );
