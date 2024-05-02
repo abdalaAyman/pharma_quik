@@ -3,19 +3,19 @@ import 'package:pharmaquik/features/Home/presentation/view/add_view.dart';
 import 'package:pharmaquik/features/Home/presentation/view/home_view.dart';
 import 'package:pharmaquik/features/Home/presentation/view/search_view.dart';
 
-class MainHome extends StatefulWidget {
-  const MainHome({super.key});
+class MainView extends StatefulWidget {
+  const MainView({super.key});
 
   @override
-  State<MainHome> createState() => _MainHomeState();
+  State<MainView> createState() => _MainViewState();
 }
 
-class _MainHomeState extends State<MainHome> {
+class _MainViewState extends State<MainView> {
   int _currentIndex = 0;
 
   final List<Widget> _widget = <Widget>[
-    HomeView(),
-    Search(),
+    const HomeView(),
+    const Search(),
   ];
 
   @override
@@ -40,7 +40,7 @@ class _MainHomeState extends State<MainHome> {
             alignment: AlignmentDirectional.center,
             children: [
               CircleAvatar(
-                radius: 24,
+                radius: 25,
                 backgroundColor: Colors.white,
               ),
               CircleAvatar(

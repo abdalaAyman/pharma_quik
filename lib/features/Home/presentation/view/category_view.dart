@@ -25,7 +25,7 @@ class CategoryCard extends StatelessWidget {
               child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Image.asset('assets/logos/Rectangle 3370 (1).png'),
+                    Image.asset('assets/Rectangle 3370 (1).png'),
                     Padding(
                       padding: const EdgeInsets.only(top: 15),
                       child: Text(
@@ -43,7 +43,7 @@ class CategoryCard extends StatelessWidget {
               child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Image.asset('assets/logos/Rectangle 3370 (2).png'),
+                    Image.asset('assets/Rectangle 3370 (2).png'),
                     Padding(
                       padding: const EdgeInsets.only(top: 15),
                       child: Text(
@@ -61,7 +61,7 @@ class CategoryCard extends StatelessWidget {
               child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Image.asset('assets/logos/Rectangle 3370 (3).png'),
+                    Image.asset('assets/Rectangle 3370 (3).png'),
                     Padding(
                       padding: const EdgeInsets.only(top: 15),
                       child: Text(
@@ -79,7 +79,7 @@ class CategoryCard extends StatelessWidget {
               child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Image.asset('assets/logos/Rectangle 3370 (4).png'),
+                    Image.asset('assets/Rectangle 3370 (4).png'),
                     Padding(
                       padding: const EdgeInsets.only(top: 15),
                       child: Text(
@@ -97,7 +97,7 @@ class CategoryCard extends StatelessWidget {
               child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Image.asset('assets/logos/Rectangle 3370 (5).png'),
+                    Image.asset('assets/Rectangle 3370 (5).png'),
                     Padding(
                       padding: const EdgeInsets.only(top: 15),
                       child: Text(

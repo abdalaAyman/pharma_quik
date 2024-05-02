@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pharmaquik/core/utils/assets_data.dart';
 import 'package:pharmaquik/features/Home/presentation/view/main_view.dart';
 import 'package:pharmaquik/features/Splash/presentation/models/onboarding.dart';
 import 'package:pharmaquik/features/Splash/presentation/views/widgets/dot_inidictor.dart';
 import 'package:pharmaquik/features/Splash/presentation/views/widgets/on_boarding_content.dart';
 
-class OnBordingView extends StatefulWidget {
-  const OnBordingView({super.key});
+class OnBordingViewbody extends StatefulWidget {
+  const OnBordingViewbody({super.key});
 
   @override
-  State<OnBordingView> createState() => _OnBordingViewState();
+  State<OnBordingViewbody> createState() => _OnBordingViewbodyState();
 }
 
-class _OnBordingViewState extends State<OnBordingView> {
+class _OnBordingViewbodyState extends State<OnBordingViewbody> {
   late PageController _pageController;
   int _pageIndex = 0;
 
@@ -50,7 +51,7 @@ class _OnBordingViewState extends State<OnBordingView> {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const MainHome()),
+                  MaterialPageRoute(builder: (context) => const MainView()),
                 );
               },
               child: const Text(
@@ -127,21 +128,21 @@ class _OnBordingViewState extends State<OnBordingView> {
                   onTap: () {
                     if (_pageIndex != onBoardingList.length - 1) {
                       _pageController.nextPage(
-                          duration: Duration(milliseconds: 500),
+                          duration: const Duration(milliseconds: 500),
                           curve: Curves.linear);
                     } else {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const MainHome()),
+                            builder: (context) => const MainView()),
                       );
                     }
                   }, // Handle your callback.
                   splashColor:
                       const Color.fromARGB(147, 8, 8, 169).withOpacity(0.5),
                   child: Ink(
-                    height: 56,
-                    width: 56,
+                    height: 56.h,
+                    width: 56.h,
                     decoration: const BoxDecoration(
                       borderRadius: BorderRadius.all(Radius.circular(20)),
                       image: DecorationImage(

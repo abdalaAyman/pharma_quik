@@ -12,7 +12,7 @@ class OnBoardingView extends StatelessWidget {
       body: const SafeArea(
         child: Padding(
           padding: EdgeInsets.only(top: 0, left: 25, right: 25),
-          child: OnBordingView(),
+          child: OnBordingViewbody(),
         ),
       ),
     );
