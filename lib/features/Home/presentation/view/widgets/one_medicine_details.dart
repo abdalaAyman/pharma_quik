@@ -80,8 +80,9 @@ class _OneMedicineDetailsState extends State<OneMedicineDetails> {
                             });
                             favoriteProvider.addFavorite(widget.medicineName);
                           } else {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(content: Text('tsudud')));
+                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                content: Text(
+                                    'This medicine has been stored before')));
                           }
                         },
                         icon: widget.isFav == true
