@@ -1,0 +1,120 @@
+import 'dart:convert';
+import 'package:dio/dio.dart';
+
+class Api {
+  final Dio _dio = Dio();
+
+  Future<dynamic> get({
+    required String url,
+  }) async {
+    try {
+      final Map<String, dynamic> headers = {};
+      final Response response = await _dio.get(
+        url,
+        options: Options(headers: headers),
+      );
+
+      if (response.statusCode == 200) {
+        print('ooooooooo');
+        print(response.data);
+        return response.data;
+      } else {
+        throw Exception(
+            'There is a problem with status code ${response.statusCode}');
+      }
+    } catch (e) {
+      throw Exception('Error during GET request: $e');
+    }
+  }
+
+  Future<dynamic> post({
+    required String url,
+    required Map<String, dynamic> body,
+    String? token,
+  }) async {
+    try {
+      final Map<String, dynamic> headers = {
+        'Content-Type': 'application/json',
+      };
+
+      if (token != null) {
+        headers['Authorization'] = 'Bearer $token';
+      }
+
+      final Response response = await _dio.post(
+        url,
+        data: jsonEncode(body),
+        options: Options(headers: headers),
+      );
+
+      if (response.statusCode == 200) {
+        return response.data;
+      } else {
+        throw Exception(
+            'There is a problem with status code ${response.statusCode} with body ${response.data}');
+      }
+    } catch (e) {
+      throw Exception('Error during POST request: $e');
+    }
+  }
+
+  Future<dynamic> put({
+    required String url,
+    required dynamic body,
+    required String? token,
+  }) async {
+    try {
+      final Map<String, dynamic> headers = {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      };
+
+      if (token != null) {
+        headers['Authorization'] = 'Bearer $token';
+      }
+
+      final Response response = await _dio.put(
+        url,
+        data: body,
+        options: Options(headers: headers),
+      );
+
+      if (response.statusCode == 200) {
+        return response.data;
+      } else {
+        throw Exception(
+            'There is a problem with status code ${response.statusCode} with body ${response.data}');
+      }
+    } catch (e) {
+      throw Exception('Error during PUT request: $e');
+    }
+  }
+
+  Future<dynamic> delete({
+    required String url,
+    required String? token,
+  }) async {
+    try {
+      final Map<String, dynamic> headers = {
+        'Content-Type': 'application/json',
+      };
+
+      if (token != null) {
+        headers['Authorization'] = 'Bearer $token';
+      }
+
+      final Response response = await _dio.delete(
+        url,
+        options: Options(headers: headers),
+      );
+
+      if (response.statusCode == 200) {
+        return response.data;
+      } else {
+        throw Exception(
+            'There is a problem with status code ${response.statusCode} with body ${response.data}');
+      }
+    } catch (e) {
+      throw Exception('Error during DELETE request: $e');
+    }
+  }
+}

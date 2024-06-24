@@ -1,0 +1,20 @@
+import 'dart:convert';
+import 'package:dio/dio.dart';
+
+
+
+class MedicineServices {
+
+  static Future<List<MedicineModel>> getMediciens()  async {
+    String url = 'http://pharmaquick1.runasp.net/api/Medications/GetAll';
+    List<dynamic> response = await Api().get(url: url, );
+
+    int lengthOfResponse = response.length;
+    List<MedicineModel> MediciensData = [];
+    for (int i = 0; i < lengthOfResponse; i++) {
+      MediciensData.add(MedicineModel.fromJson(response[i]));
+    }
+    return MediciensData;
+  }
+
+}
