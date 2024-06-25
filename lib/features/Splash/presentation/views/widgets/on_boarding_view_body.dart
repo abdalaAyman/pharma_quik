@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:pharmaquik/core/utils/assets_data.dart';
-import 'package:pharmaquik/features/Home/presentation/view/main_view.dart';
-import 'package:pharmaquik/features/Splash/presentation/models/onboarding.dart';
-import 'package:pharmaquik/features/Splash/presentation/views/widgets/dot_inidictor.dart';
-import 'package:pharmaquik/features/Splash/presentation/views/widgets/on_boarding_content.dart';
+import '../../../../../core/utils/assets_data.dart';
+import '../../../../Home/presentation/view/main_view.dart';
+import '../../models/onboarding.dart';
+import 'dot_inidictor.dart';
+import 'on_boarding_content.dart';
 
 class OnBordingViewbody extends StatefulWidget {
   const OnBordingViewbody({super.key});
@@ -23,12 +22,13 @@ class _OnBordingViewbodyState extends State<OnBordingViewbody> {
     _pageController = PageController(initialPage: 0);
     super.initState();
   }
-
+/*
   @override
   void dispose() {
     _pageController.dispose();
     super.dispose();
   }
+  */
 
   @override
   Widget build(BuildContext context) {
@@ -37,10 +37,10 @@ class _OnBordingViewbodyState extends State<OnBordingViewbody> {
         actions: [
           TextButton(
               style: ButtonStyle(
-                overlayColor: MaterialStateProperty.resolveWith<Color?>(
-                  (Set<MaterialState> states) {
-                    if (states.contains(MaterialState.focused) ||
-                        states.contains(MaterialState.pressed)) {
+                overlayColor: WidgetStateProperty.resolveWith<Color?>(
+                  (Set<WidgetState> states) {
+                    if (states.contains(WidgetState.focused) ||
+                        states.contains(WidgetState.pressed)) {
                       return const Color.fromARGB(255, 1, 24, 50)
                           .withOpacity(0.12);
                     }
@@ -49,7 +49,7 @@ class _OnBordingViewbodyState extends State<OnBordingViewbody> {
                 ),
               ),
               onPressed: () {
-                Navigator.push(
+                Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(builder: (context) => const MainView()),
                 );
@@ -63,13 +63,21 @@ class _OnBordingViewbodyState extends State<OnBordingViewbody> {
         elevation: 0.0,
         systemOverlayStyle:
             const SystemUiOverlayStyle(statusBarColor: Colors.transparent),
-        leading: IconButton(
-          onPressed: () {},
-          icon: const Icon(
-            Icons.arrow_back_ios_new,
-            color: Color(0xFF7D7B7B),
-          ),
-        ),
+        leading: _pageIndex == 0
+            ? const SizedBox()
+            : IconButton(
+                onPressed: () {
+                  setState(() {
+                    _pageController.previousPage(
+                        duration: const Duration(milliseconds: 500),
+                        curve: Curves.linear);
+                  });
+                },
+                icon: const Icon(
+                  Icons.arrow_back_ios_new,
+                  color: Color(0xFF7D7B7B),
+                ),
+              ),
       ),
       body: Column(
         children: [
@@ -109,16 +117,6 @@ class _OnBordingViewbodyState extends State<OnBordingViewbody> {
               ),
             ],
           ),
-          // if (_pageIndex == onBoardingList.length - 1)
-          //   Align(
-          //     alignment: Alignment.bottomRight,
-          //     child: Padding(
-          //         padding: const EdgeInsets.only(bottom: 20, right: 8),
-          //         child: IconButton(
-          //           icon: ImageIcon(AssetImage("assets/logos/nextbutton.png")),
-          //           onPressed: () {},
-          //         )),
-          //   ),
           Padding(
             padding: const EdgeInsets.all(15.0),
             child: Row(
@@ -131,7 +129,7 @@ class _OnBordingViewbodyState extends State<OnBordingViewbody> {
                           duration: const Duration(milliseconds: 500),
                           curve: Curves.linear);
                     } else {
-                      Navigator.push(
+                      Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
                             builder: (context) => const MainView()),
@@ -141,8 +139,8 @@ class _OnBordingViewbodyState extends State<OnBordingViewbody> {
                   splashColor:
                       const Color.fromARGB(147, 8, 8, 169).withOpacity(0.5),
                   child: Ink(
-                    height: 56.h,
-                    width: 56.h,
+                    height: 56,
+                    width: 56,
                     decoration: const BoxDecoration(
                       borderRadius: BorderRadius.all(Radius.circular(20)),
                       image: DecorationImage(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pharmaquik/constants.dart';
+
+import '../../constants.dart';
 
 abstract class Styles {
   static const textStyle32KRoboto = TextStyle(

@@ -6,16 +6,14 @@
 // tree, read text, and verify that the values of widget properties are correct.
 
 import 'package:flutter/material.dart';
+import 'package:flutter_application_2/core/routing/app_router.dart';
+import 'package:flutter_application_2/pharma_quik.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:pharmaquik/core/routing/app_router.dart';
-import 'package:pharmaquik/pharma_quik.dart';
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(PharmaQuik(
-      appRouter: AppRouter(),
-    ));
+    await tester.pumpWidget(PharmaQuik(appRouter: AppRouter()));
 
     // Verify that our counter starts at 0.
     expect(find.text('0'), findsOneWidget);

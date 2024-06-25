@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:pharmaquik/core/utils/assets_data.dart';
-import 'package:pharmaquik/features/Splash/presentation/views/on_boarding_view.dart';
+import '../../../../core/utils/assets_data.dart';
+import 'on_boarding_view.dart';
 
 class SplashView extends StatefulWidget {
   const SplashView({super.key});
@@ -37,8 +37,8 @@ class _SplashViewState extends State<SplashView>
       width: double.infinity,
       decoration: const BoxDecoration(
         gradient: LinearGradient(colors: [
-          Color.fromARGB(255, 104, 187, 255),
-          Color.fromARGB(255, 255, 112, 160)
+          Color.fromARGB(255, 237, 240, 242),
+          Color.fromARGB(255, 227, 224, 225)
         ], begin: Alignment.topRight, end: Alignment.bottomLeft),
       ),
       child: Stack(
