@@ -111,7 +111,7 @@ class HomeView extends StatelessWidget {
                             MaterialPageRoute(
                               builder: (context) => CategoryListPage(
                                 PageName: ' Acne',
-                                categoryId: 4,
+                                categoryId: 3,
                               ),
                             ),
                           );

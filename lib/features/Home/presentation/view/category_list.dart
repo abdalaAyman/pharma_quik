@@ -6,6 +6,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_application_2/core/helpers/extensions.dart';
 import 'package:flutter_application_2/features/Home/model/informations.dart';
 import 'package:flutter_application_2/features/Home/presentation/manager/get_medicin_services.dart';
+import 'package:flutter_application_2/features/Home/presentation/view/widgets/one_medicine_details.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 /**
@@ -84,10 +85,25 @@ class CategoryListPage extends StatelessWidget {
             height: 15,
           ),
           FutureBuilder<List<MedicineModel>>(
-              future: MedicineDataApiService.getMedicinesByCategory(categoryId),
+              future: MedicineDataApiService.getMedicinesByCategory(
+                  categoryId != 5
+                      ? (categoryId <= 2 ? categoryId : categoryId - 2)
+                      : 1),
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
                   List<MedicineModel> filterMedicines = snapshot.data ?? [];
+
+                  switch (categoryId) {
+                    case 3:
+                      filterMedicines = filterMedicines.reversed.toList();
+                      break;
+                    case 4:
+                      filterMedicines = filterMedicines.reversed.toList();
+                      break;
+                    case 5:
+                      filterMedicines = filterMedicines.sublist(15, 95);
+                      break;
+                  }
 
                   if (filterMedicines.isNotEmpty) {
                     return Center(
@@ -107,6 +123,27 @@ class CategoryListPage extends StatelessWidget {
                             return Padding(
                               padding: const EdgeInsets.symmetric(vertical: 5),
                               child: InkWell(
+                                onTap: () async {
+                                  try {
+                                    MedicineModel med =
+                                        await MedicineDataApiService
+                                            .getOnlyMedicines(
+                                                medicine: filterMedicines[index]
+                                                        .medicationName ??
+                                                    '');
+
+                                    Navigator.of(context).push(MaterialPageRoute(
+                                        builder: (context) =>
+                                            OneMedicineDetails(
+                                                medicineName:
+                                                    filterMedicines[index]
+                                                            .medicationName ??
+                                                        '',
+                                                medicines: med)));
+                                  } catch (e) {
+                                    print('$e');
+                                  }
+                                },
                                 splashFactory: InkSplash.splashFactory,
                                 splashColor: Color.fromARGB(255, 22, 106, 175),
                                 child: Container(
@@ -193,4 +230,3 @@ class CategoryListPage extends StatelessWidget {
     );
   }
 }
-////////http://pharmaquick1.runasp.net/api/Categories/1
