@@ -10,25 +10,25 @@ class MedicineModel {
   List<String>? replacements;
 
   MedicineModel({
-    required this.medicineId,
     required this.medicationName,
-    required this.useOfMedications,
-    required this.contraindicationsForUse,
-    required this.precautions,
-    required this.sideEffects,
-    required this.category,
-    required this.activeIngredients,
-    required this.replacements,
+    this.medicineId,
+    this.useOfMedications,
+    this.contraindicationsForUse,
+    this.precautions,
+    this.sideEffects,
+    this.category,
+    this.activeIngredients,
+    this.replacements,
   });
 
   MedicineModel.fromJson(Map<String, dynamic> json) {
-    medicineId = json['medicineId'];
+    medicineId = json['medicineId'] ?? 0;
     medicationName = json['medicationName'];
-    useOfMedications = json['useOfMedications'];
-    contraindicationsForUse = json['contraindicationsForUse'];
-    precautions = json['precautions'];
-    sideEffects = json['sideEffects'];
-    category = json['category'];
+    useOfMedications = json['useOfMedications'] ?? '';
+    contraindicationsForUse = json['contraindicationsForUse'] ?? '';
+    precautions = json['precautions'] ?? '';
+    sideEffects = json['sideEffects'] ?? '';
+    category = json['category'] ?? '';
     if (json['activeIngredients'] != null) {
       activeIngredients = [];
       json['activeIngredients'].forEach((v) {

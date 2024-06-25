@@ -12,4 +12,5 @@ class Routes {
   static const String InteractionView = '/InteractionView';
   static const String SaveView = '/SaveView';
   static const String AlarmView = '/AlarmView';
+  static const String HomeView = '/HomeView';
 }

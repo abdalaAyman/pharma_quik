@@ -3,6 +3,33 @@ import 'dart:convert';
 import 'package:flutter_application_2/features/Home/model/informations.dart';
 
 class MedicineDataApiService {
+  static Future<List<MedicineModel>> getMedicinesByCategory(int catId) async {
+    String url = 'http://pharmaquick1.runasp.net/api/Categories/$catId';
+
+    try {
+      final Dio _dio = Dio();
+
+      Response response = await _dio.get(url);
+
+      List<dynamic> responseData = response.data;
+      List<MedicineModel> medicineData =
+          responseData.map((data) => MedicineModel.fromJson(data)).toList();
+
+      return medicineData;
+    } catch (e) {
+      if (e is DioException) {
+        if (e.response?.statusCode == 404)
+          throw Exception('Medicine not found');
+        else if (e.response?.statusCode == 500)
+          throw Exception('Internal server error');
+        else
+          throw Exception('Response error');
+      } else {
+        throw Exception('Unexpected error');
+      }
+    }
+  }
+
   static Future<List<MedicineModel>> getAllMedicines() async {
     String url = 'http://pharmaquick1.runasp.net/api/Medications/GetAll';
 

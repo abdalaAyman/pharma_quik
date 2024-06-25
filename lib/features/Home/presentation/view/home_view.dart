@@ -81,6 +81,7 @@ class HomeView extends StatelessWidget {
                             MaterialPageRoute(
                               builder: (context) => CategoryListPage(
                                 PageName: ' Diabetes',
+                                categoryId: 1,
                               ),
                             ),
                           );
@@ -95,6 +96,7 @@ class HomeView extends StatelessWidget {
                             MaterialPageRoute(
                               builder: (context) => CategoryListPage(
                                 PageName: ' Blood pressure spiked',
+                                categoryId: 2,
                               ),
                             ),
                           );
@@ -109,6 +111,7 @@ class HomeView extends StatelessWidget {
                             MaterialPageRoute(
                               builder: (context) => CategoryListPage(
                                 PageName: ' Acne',
+                                categoryId: 4,
                               ),
                             ),
                           );
@@ -123,6 +126,7 @@ class HomeView extends StatelessWidget {
                             MaterialPageRoute(
                               builder: (context) => CategoryListPage(
                                 PageName: ' Cholestrol sprain',
+                                categoryId: 4,
                               ),
                             ),
                           );
@@ -137,6 +141,7 @@ class HomeView extends StatelessWidget {
                             MaterialPageRoute(
                               builder: (context) => CategoryListPage(
                                 PageName: ' Blood pressure spiked',
+                                categoryId: 5,
                               ),
                             ),
                           );

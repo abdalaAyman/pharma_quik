@@ -37,10 +37,10 @@ class _OnBordingViewbodyState extends State<OnBordingViewbody> {
         actions: [
           TextButton(
               style: ButtonStyle(
-                overlayColor: MaterialStateProperty.resolveWith<Color?>(
-                  (Set<MaterialState> states) {
-                    if (states.contains(MaterialState.focused) ||
-                        states.contains(MaterialState.pressed)) {
+                overlayColor: WidgetStateProperty.resolveWith<Color?>(
+                  (Set<WidgetState> states) {
+                    if (states.contains(WidgetState.focused) ||
+                        states.contains(WidgetState.pressed)) {
                       return const Color.fromARGB(255, 1, 24, 50)
                           .withOpacity(0.12);
                     }
@@ -49,7 +49,7 @@ class _OnBordingViewbodyState extends State<OnBordingViewbody> {
                 ),
               ),
               onPressed: () {
-                Navigator.push(
+                Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(builder: (context) => const MainView()),
                 );
@@ -64,12 +64,12 @@ class _OnBordingViewbodyState extends State<OnBordingViewbody> {
         systemOverlayStyle:
             const SystemUiOverlayStyle(statusBarColor: Colors.transparent),
         leading: _pageIndex == 0
-            ? SizedBox()
+            ? const SizedBox()
             : IconButton(
                 onPressed: () {
                   setState(() {
                     _pageController.previousPage(
-                        duration: Duration(milliseconds: 500),
+                        duration: const Duration(milliseconds: 500),
                         curve: Curves.linear);
                   });
                 },
@@ -126,10 +126,10 @@ class _OnBordingViewbodyState extends State<OnBordingViewbody> {
                   onTap: () {
                     if (_pageIndex != onBoardingList.length - 1) {
                       _pageController.nextPage(
-                          duration: Duration(milliseconds: 500),
+                          duration: const Duration(milliseconds: 500),
                           curve: Curves.linear);
                     } else {
-                      Navigator.push(
+                      Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
                             builder: (context) => const MainView()),
