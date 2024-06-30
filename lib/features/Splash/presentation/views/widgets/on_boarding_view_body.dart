@@ -162,12 +162,8 @@ class _OnBordingViewbodyState extends State<OnBordingViewbody> {
 final List<OnBoarding> onBoardingList = [
   OnBoarding(
     headTitle: 'Information about medicines',
-    title: """Help the user to know some information about
-the drug
-Which helps the user in times when he cannot go
-to the doctor and saves him time, and takes the
-medicine while he is fully aware of everything 
-related to this medicine safely""",
+    title:
+        'Help the user to know some information aboutthe drug Which helps the user in times when he cannot go to the doctor and saves him time, and takes the medicine while he is fully aware of everything related to this medicine safely',
     image: AssetsData.onbording1,
     width: 297,
     height: 222,

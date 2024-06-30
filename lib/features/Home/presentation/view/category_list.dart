@@ -122,87 +122,98 @@ class CategoryListPage extends StatelessWidget {
                           itemBuilder: (context, index) {
                             return Padding(
                               padding: const EdgeInsets.symmetric(vertical: 5),
-                              child: InkWell(
-                                onTap: () async {
-                                  try {
-                                    MedicineModel med =
-                                        await MedicineDataApiService
-                                            .getOnlyMedicines(
-                                                medicine: filterMedicines[index]
-                                                        .medicationName ??
-                                                    '');
-
-                                    Navigator.of(context).push(MaterialPageRoute(
-                                        builder: (context) =>
-                                            OneMedicineDetails(
-                                                medicineName:
-                                                    filterMedicines[index]
-                                                            .medicationName ??
-                                                        '',
-                                                medicines: med)));
-                                  } catch (e) {
-                                    print('$e');
-                                  }
-                                },
-                                splashFactory: InkSplash.splashFactory,
-                                splashColor: Color.fromARGB(255, 22, 106, 175),
-                                child: Container(
-                                    decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      boxShadow: [
-                                        BoxShadow(
-                                          color: Colors.grey.withOpacity(0.3),
-                                          spreadRadius: 2,
-                                          blurRadius: 5,
-                                          offset: const Offset(1, 1),
-                                        )
-                                      ],
+                              child: Container(
+                                  decoration: BoxDecoration(
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.grey.withOpacity(0.3),
+                                        spreadRadius: 2,
+                                        blurRadius: 5,
+                                        offset: const Offset(1, 1),
+                                      )
+                                    ],
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(50)),
+                                    border: Border.all(
+                                      color: Color.fromARGB(122, 118, 214, 255),
+                                    ),
+                                  ),
+                                  width: MediaQuery.of(context).size.width,
+                                  child: Material(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(50)),
+                                    color: Colors.white,
+                                    child: InkWell(
                                       borderRadius:
                                           BorderRadius.all(Radius.circular(50)),
-                                      border: Border.all(
-                                        color:
-                                            Color.fromARGB(122, 118, 214, 255),
-                                      ),
-                                    ),
-                                    width: MediaQuery.of(context).size.width,
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(
-                                          left: 10,
-                                          top: 12,
-                                          bottom: 12,
-                                          right: 10),
-                                      child: Center(
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Flexible(
-                                                child: Container(
-                                              padding:
-                                                  EdgeInsets.only(right: 13),
-                                              child: Text(
-                                                filterMedicines[index]
-                                                        .medicationName ??
-                                                    '',
-                                                overflow: TextOverflow.fade,
-                                                maxLines: 2,
-                                                style: TextStyle(
-                                                    fontSize: 16.0,
-                                                    fontFamily: 'Roboto',
-                                                    fontWeight:
-                                                        FontWeight.w600),
-                                              ),
-                                            )),
-                                            Icon(
-                                              Icons.keyboard_arrow_right_sharp,
-                                              size: 25,
-                                              color: Colors.black,
-                                            )
-                                          ],
+                                      onTap: () async {
+                                        try {
+                                          MedicineModel med =
+                                              await MedicineDataApiService
+                                                  .getOnlyMedicines(
+                                                      medicine: filterMedicines[
+                                                                  index]
+                                                              .medicationName ??
+                                                          '');
+
+                                          Navigator.of(context).push(
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      OneMedicineDetails(
+                                                          medicineName:
+                                                              filterMedicines[
+                                                                          index]
+                                                                      .medicationName ??
+                                                                  '',
+                                                          medicines: med)));
+                                        } catch (e) {
+                                          print('$e');
+                                        }
+                                      },
+                                      hoverColor: Colors.black12,
+                                      splashFactory: InkSplash.splashFactory,
+                                      splashColor:
+                                          Color.fromARGB(255, 22, 106, 175),
+                                      child: Padding(
+                                        padding: const EdgeInsets.only(
+                                            left: 10,
+                                            top: 12,
+                                            bottom: 12,
+                                            right: 10),
+                                        child: Center(
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Flexible(
+                                                  child: Container(
+                                                padding:
+                                                    EdgeInsets.only(right: 13),
+                                                child: Text(
+                                                  filterMedicines[index]
+                                                          .medicationName ??
+                                                      '',
+                                                  overflow: TextOverflow.fade,
+                                                  maxLines: 2,
+                                                  style: TextStyle(
+                                                      fontSize: 16.0,
+                                                      fontFamily: 'Roboto',
+                                                      fontWeight:
+                                                          FontWeight.w600),
+                                                ),
+                                              )),
+                                              Icon(
+                                                Icons
+                                                    .keyboard_arrow_right_sharp,
+                                                size: 25,
+                                                color: Colors.black,
+                                              )
+                                            ],
+                                          ),
                                         ),
                                       ),
-                                    )),
-                              ),
+                                    ),
+                                  )),
                             );
                           },
                         ),

@@ -41,6 +41,8 @@ class _MainViewState extends State<MainView> {
       resizeToAvoidBottomInset: false,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
+          heroTag: 'interaction',
+          tooltip: 'Interaction',
           // backgroundColor: Colors.blue,
           backgroundColor: Colors.transparent,
           elevation: 0,

@@ -18,3 +18,21 @@ class FavoriteProvider with ChangeNotifier {
     notifyListeners();
   }
 }
+
+class AlarmProvider with ChangeNotifier {
+  Box<String> _AlarmBox = Hive.box<String>('alarm');
+
+  List<String> get alarms {
+    return _AlarmBox.values.toList();
+  }
+
+  void addAlarm(String item) {
+    _AlarmBox.add(item);
+    notifyListeners();
+  }
+
+  void removeAlarm(int index) {
+    _AlarmBox.deleteAt(index);
+    notifyListeners();
+  }
+}

@@ -10,7 +10,7 @@ class ClockPainter extends CustomPainter {
     var center = Offset(centerX, centerY);
     var radius = min(centerX, centerY);
 //full circle
-    final circle_paint = Paint()..color = Color.fromARGB(122, 118, 214, 255);
+    final circle_paint = Paint()..color = Colors.blue;
 
     canvas.drawCircle(center, radius, circle_paint);
 //seconds line
@@ -33,7 +33,7 @@ class ClockPainter extends CustomPainter {
     final hr_line = Paint()
       // ignore: prefer_const_constructors
       ..shader = RadialGradient(
-        colors: const [Colors.blue, Colors.blueAccent],
+        colors: const [Color.fromARGB(255, 255, 255, 255), Colors.white30],
       ).createShader(Rect.fromCircle(
         center: center,
         radius: radius,
@@ -51,7 +51,7 @@ class ClockPainter extends CustomPainter {
     final min_line = Paint()
       // ignore: prefer_const_constructors
       ..shader = RadialGradient(
-        colors: const [Colors.blue, Colors.blueAccent],
+        colors: const [Color.fromARGB(255, 255, 255, 255), Colors.white30],
       ).createShader(Rect.fromCircle(
         center: center,
         radius: radius,
@@ -66,8 +66,9 @@ class ClockPainter extends CustomPainter {
 
 //inner cirlce
 
-    final center_paint = Paint()..color = Colors.amber;
-    canvas.drawCircle(center, 10, center_paint);
+    final center_paint = Paint()
+      ..color = const Color.fromARGB(255, 255, 255, 255);
+    canvas.drawCircle(center, 6, center_paint);
   }
 
   @override

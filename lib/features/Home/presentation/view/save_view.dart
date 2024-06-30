@@ -1,10 +1,13 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/core/helpers/extensions.dart';
+import 'package:flutter_application_2/features/Home/presentation/manager/get_medicin_services.dart';
+import 'package:flutter_application_2/features/Home/presentation/view/widgets/one_medicine_details.dart';
 import 'package:flutter_application_2/features/provider_controller/provider_controller.dart';
 import 'package:hive/hive.dart';
 import 'package:provider/provider.dart';
 import '../../../../constants.dart';
+import '../../model/informations.dart';
 
 class SaveView extends StatelessWidget {
   SaveView({super.key});
@@ -31,8 +34,8 @@ class SaveView extends StatelessWidget {
           ),
         ),
       ),
-      body: favoriteProvider.favorites.length == 0
-          ? Center(
+      body: favoriteProvider.favorites.isEmpty
+          ? const Center(
               child: Text("No Saved Items Found."),
             )
           : Padding(
@@ -43,29 +46,59 @@ class SaveView extends StatelessWidget {
                   final item = favoriteProvider.favorites[index];
                   return Padding(
                     padding: const EdgeInsets.symmetric(vertical: 8.0),
-                    child: Card(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-                      elevation: 5,
-                      child: ListTile(
-                        contentPadding: EdgeInsets.all(16),
-                        leading: CircleAvatar(
-                          child: Icon(Icons.favorite, color: Colors.white),
-                          backgroundColor: Colors.blue,
+                    child: InkWell(
+                      onTap: () async {
+                        try {
+                          MedicineModel med =
+                              await MedicineDataApiService.getOnlyMedicines(
+                                  medicine: item);
+
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => OneMedicineDetails(
+                                  medicineName: item, medicines: med)));
+                        } catch (e) {
+                          print('$e');
+                        }
+                      },
+                      child: Card(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15),
                         ),
-                        title: Text(
-                          item,
-                          style: const TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
+                        elevation: 5,
+                        child: Container(
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(15),
+                              gradient: const LinearGradient(
+                                colors: [
+                                  kBlueColor,
+                                  Colors.blue,
+                                  Colors.blue,
+                                  kBlueColor
+                                ],
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
+                              )),
+                          child: ListTile(
+                            selectedColor: Colors.transparent,
+                            contentPadding: const EdgeInsets.all(16),
+                            leading: const CircleAvatar(
+                              backgroundColor: Colors.transparent,
+                              child: Icon(Icons.favorite, color: Colors.white),
+                            ),
+                            title: Text(
+                              item,
+                              style: const TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white),
+                            ),
+                            trailing: IconButton(
+                              icon: const Icon(Icons.delete, color: Colors.red),
+                              onPressed: () {
+                                favoriteProvider.removeFavorite(index);
+                              },
+                            ),
                           ),
-                        ),
-                        trailing: IconButton(
-                          icon: const Icon(Icons.delete, color: Colors.red),
-                          onPressed: () {
-                            favoriteProvider.removeFavorite(index);
-                          },
                         ),
                       ),
                     ),

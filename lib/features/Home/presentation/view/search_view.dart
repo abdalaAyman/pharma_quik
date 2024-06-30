@@ -79,11 +79,11 @@ class _SearchState extends State<Search> {
                     showDialog(
                         context: context,
                         builder: (context) => AlertDialog(
-                              title: Text('Faild'),
+                              title: Text('Failed'),
                               content: SizedBox(
                                 height: 20,
                                 child: Center(
-                                  child: Text('$e'),
+                                  child: Text('Medicine not found'),
                                 ),
                               ),
                               actions: [

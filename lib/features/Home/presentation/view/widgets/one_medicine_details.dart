@@ -23,6 +23,7 @@ class _OneMedicineDetailsState extends State<OneMedicineDetails> {
   @override
   Widget build(BuildContext context) {
     final favoriteProvider = Provider.of<FavoriteProvider>(context);
+    final List<String> favs = favoriteProvider.favorites;
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -85,7 +86,7 @@ class _OneMedicineDetailsState extends State<OneMedicineDetails> {
                                     'This medicine has been stored before')));
                           }
                         },
-                        icon: widget.isFav == true
+                        icon: favs.contains(widget.medicineName)
                             ? Icon(
                                 Icons.favorite,
                                 size: 25,
